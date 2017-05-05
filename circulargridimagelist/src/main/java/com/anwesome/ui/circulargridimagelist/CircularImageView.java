@@ -14,6 +14,11 @@ public class CircularImageView extends View {
     public CircularImageView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
+        init();
+    }
+    public void init() {
+        setScaleX(0.5f);
+        setScaleY(0.5f);
     }
     public void onDraw(Canvas canvas) {
         drawingController.draw(canvas,paint);
@@ -22,6 +27,10 @@ public class CircularImageView extends View {
         return true;
     }
     public void update(float factor) {
+        float scale = 0.5f +0.5f*factor;
+        setScaleX(scale);
+        setScaleY(scale);
+        setRotation(360*factor);
         postInvalidate();
     }
     private class DrawingController {
