@@ -26,7 +26,7 @@ public class CircularGridImageList  {
     }
     public void show() {
         if(!isShown) {
-            activity.setContentView(circularGridImageLayout);
+            activity.setContentView(scrollView);
         }
     }
 }
