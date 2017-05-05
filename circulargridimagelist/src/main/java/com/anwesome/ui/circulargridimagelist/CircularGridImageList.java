@@ -19,9 +19,9 @@ public class CircularGridImageList  {
         circularGridImageLayout = new CircularGridImageLayout(activity);
         scrollView.addView(circularGridImageLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
-    public void addImage(Bitmap bitmap) {
+    public void addImage(Bitmap bitmap,OnClickListener onClickListener) {
         if(!isShown) {
-            circularGridImageLayout.addImage(bitmap);
+            circularGridImageLayout.addImage(bitmap,onClickListener);
         }
     }
     public void show() {

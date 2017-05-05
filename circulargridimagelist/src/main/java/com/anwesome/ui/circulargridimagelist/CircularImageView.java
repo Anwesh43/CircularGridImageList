@@ -1,15 +1,22 @@
 package com.anwesome.ui.circulargridimagelist;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.*;
-import android.view.*;
-
+import android.view.View;
+import android.view.MotionEvent;
+import com.anwesome.ui.circulargridimagelist.OnClickListener;
 /**
  * Created by anweshmishra on 05/05/17.
  */
 public class CircularImageView extends View {
     private Bitmap bitmap;
+    private com.anwesome.ui.circulargridimagelist.OnClickListener onClickListener;
+    public void setOnClickListener(com.anwesome.ui.circulargridimagelist.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private DrawingController drawingController = new DrawingController();
     private AnimationHandler animationHandler  = new AnimationHandler();
@@ -62,18 +69,25 @@ public class CircularImageView extends View {
             render++;
         }
     }
-    private class AnimationHandler implements ValueAnimator.AnimatorUpdateListener{
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
         private ValueAnimator startAnimator = ValueAnimator.ofFloat(0,1),endAnimator = ValueAnimator.ofFloat(1,0);
         public AnimationHandler() {
             startAnimator.setDuration(500);
             endAnimator.setDuration(500);
             startAnimator.addUpdateListener(this);
             endAnimator.addUpdateListener(this);
+            startAnimator.addListener(this);
+            endAnimator.addListener(this);
 
         }
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
             float factor = (float)(valueAnimator.getAnimatedValue());
             update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(getScaleX() >= 1 && onClickListener!=null) {
+                onClickListener.onClick();
+            }
         }
         public void start() {
             startAnimator.start();

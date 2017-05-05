@@ -47,8 +47,9 @@ public class CircularGridImageLayout extends ViewGroup {
             }
         }
     }
-    public void addImage(Bitmap bitmap) {
+    public void addImage(Bitmap bitmap, com.anwesome.ui.circulargridimagelist.OnClickListener onClickListener) {
         CircularImageView circularImageView = new CircularImageView(getContext(),bitmap);
+        circularImageView.setOnClickListener(onClickListener);
         addView(circularImageView,new LayoutParams(gap,gap));
         requestLayout();
     }
