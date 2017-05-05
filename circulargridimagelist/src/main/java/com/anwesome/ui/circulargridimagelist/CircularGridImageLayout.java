@@ -18,32 +18,32 @@ public class CircularGridImageLayout extends ViewGroup {
         for(int i=0;i<getChildCount();i++) {
             View child = getChildAt(i);
             measureChild(child,wspec,hspec);
-            if(i%3 == 0) {
-                newH += 2*gap;
+            if(i%3 == 2) {
+                newH += 3*gap/2;
             }
         }
         if(getChildCount()%3 != 0){
-            newH += 2*gap;
+            newH += gap;
         }
-        newH+=gap;
+        newH+=gap/2;
         setMeasuredDimension(w,Math.max(newH,h));
     }
     public void onLayout(boolean reloaed,int a,int b,int w,int h) {
-        int x = gap,y = gap;
+        int x = gap/2,y = gap/2;
         for(int i=0;i<getChildCount();i++) {
             View child = getChildAt(i);
-            if(i%3 == 2) {
-                child.layout(x,y+gap/2,x+gap,y+gap/2+gap);
+            if(i%3 == 1) {
+                child.layout(x,y+gap/4,x+gap,y+gap/4+gap);
             }
             else {
                 child.layout(x, y, x + gap, y + gap);
             }
-            if(i%3 == 0) {
-                x = gap;
-                y += 2*gap;
+            if(i%3 == 2) {
+                x = gap/2;
+                y += 3*gap/2;
             }
             else {
-                x+=2*gap;
+                x+=3*gap/2;
             }
         }
     }
@@ -63,6 +63,6 @@ public class CircularGridImageLayout extends ViewGroup {
         display.getRealSize(size);
         w = size.x;
         h = size.y;
-        gap = w/7;
+        gap = 2*w/11;
     }
 }
