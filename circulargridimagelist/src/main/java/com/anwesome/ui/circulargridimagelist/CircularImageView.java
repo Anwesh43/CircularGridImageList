@@ -65,8 +65,8 @@ public class CircularImageView extends View {
     private class AnimationHandler implements ValueAnimator.AnimatorUpdateListener{
         private ValueAnimator startAnimator = ValueAnimator.ofFloat(0,1),endAnimator = ValueAnimator.ofFloat(1,0);
         public AnimationHandler() {
-            startAnimator.setDuration(1000);
-            endAnimator.setDuration(1000);
+            startAnimator.setDuration(500);
+            endAnimator.setDuration(500);
             startAnimator.addUpdateListener(this);
             endAnimator.addUpdateListener(this);
 
