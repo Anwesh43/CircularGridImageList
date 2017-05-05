@@ -28,6 +28,4 @@
 
 ### Demo
 
-```
     <img src="https://github.com/Anwesh43/CircularGridImageList/blob/master/demo/circulargridimagelist.gif" width="300px" height="500px">
-```
